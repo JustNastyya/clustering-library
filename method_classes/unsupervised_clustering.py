@@ -1,5 +1,5 @@
-from data_points import DataPoints
-from labeled_data_points import LabeledDataPoints
+from basic_data_structures.data_points import DataPoints
+from basic_data_structures.labeled_data_points import LabeledDataPoints
 
 
 class UnsupervisedClusterer:

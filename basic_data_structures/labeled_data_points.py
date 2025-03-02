@@ -1,4 +1,4 @@
-from data_points import DataPoints
+from basic_data_structures.data_points import DataPoints
 
 class LabeledDataPoints:
     # init LabeledDataPoints
