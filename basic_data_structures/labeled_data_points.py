@@ -19,6 +19,24 @@ class LabeledDataPoints:
             raise ValueError("data must be a dictionary of DataPoints or a dictionary of lists")
         
         self._evaluate_labeled_data_points(data)
+    
+    def __init__(self, data: DataPoints, lablels: list):
+        if len(data) != len(lablels):
+            raise ValueError("data and labels must have the same length")
+        self.data = {
+            lablels[i]: data[i]
+            for i in range(len(data))
+        }
+        self._evaluate_labeled_data_points(self.data)
+    
+    def __init__(self, data: list, lablels: list):
+        if len(data) != len(lablels):
+            raise ValueError("data and labels must have the same length")
+        self.data = {
+            lablels[i]: DataPoints(data[i])
+            for i in range(len(data))
+        }
+        self._evaluate_labeled_data_points(self.data)
         
     def __len__(self):
         return len(self.data)
