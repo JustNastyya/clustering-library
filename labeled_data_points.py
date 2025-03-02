@@ -18,6 +18,8 @@ class LabeledDataPoints:
         else: # TODO add pandas?
             raise ValueError("data must be a dictionary of DataPoints or a dictionary of lists")
         
+        self._evaluate_labeled_data_points(data)
+        
     def __len__(self):
         return len(self.data)
 
@@ -26,3 +28,11 @@ class LabeledDataPoints:
     
     def __iter__(self):
         return iter(self.data)
+
+    def _evaluate_labeled_data_points(self, data: dict):
+        for key in data.keys():
+            if not(all(isinstance(x, (int, float, str)) for x in data[key])):
+                raise ValueError("keys types must be either int, float or str")
+            if not isinstance(data[key], DataPoints):
+                raise ValueError("values must be of type DataPoints")
+        return True
