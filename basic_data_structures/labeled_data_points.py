@@ -20,20 +20,20 @@ class LabeledDataPoints:
         
         self._evaluate_labeled_data_points(data)
     
-    def __init__(self, data: DataPoints, lablels: list):
-        if len(data) != len(lablels):
+    def __init__(self, data: DataPoints, labels: list):
+        if len(data) != len(labels):
             raise ValueError("data and labels must have the same length")
         self.data = {
-            lablels[i]: data[i]
+            labels[i]: data[i]
             for i in range(len(data))
         }
         self._evaluate_labeled_data_points(self.data)
     
-    def __init__(self, data: list, lablels: list):
-        if len(data) != len(lablels):
+    def __init__(self, data: list, labels: list):
+        if len(data) != len(labels):
             raise ValueError("data and labels must have the same length")
         self.data = {
-            lablels[i]: DataPoints(data[i])
+            labels[i]: DataPoints(data[i])
             for i in range(len(data))
         }
         self._evaluate_labeled_data_points(self.data)
