@@ -21,23 +21,20 @@ class LabeledDataPoints:
         self._evaluate_labeled_data_points(data)
     
     def __init__(self, data: DataPoints, labels: list):
+        if type(data) == list: # assuming data is a list of merkmale? [x, y]
+            # transform ? TODO
+            data = [
+                [data[j][i] for j in range(len(data))]
+                for i in range(len(data[0]))
+            ]
         if len(data) != len(labels):
             raise ValueError("data and labels must have the same length")
         self.data = {
-            labels[i]: data[i]
-            for i in range(len(data))
+            label: DataPoints([data[j] for j in range(len(data)) if labels[j] == label])
+            for label in set(labels)
         }
         self._evaluate_labeled_data_points(self.data)
-    
-    def __init__(self, data: list, labels: list):
-        if len(data) != len(labels):
-            raise ValueError("data and labels must have the same length")
-        self.data = {
-            labels[i]: DataPoints(data[i])
-            for i in range(len(data))
-        }
-        self._evaluate_labeled_data_points(self.data)
-        
+
     def __len__(self):
         return len(self.data)
 
@@ -49,7 +46,7 @@ class LabeledDataPoints:
 
     def _evaluate_labeled_data_points(self, data: dict):
         for key in data.keys():
-            if not(all(isinstance(x, (int, float, str)) for x in data[key])):
+            if not(isinstance(key, (int, float, str))):
                 raise ValueError("keys types must be either int, float or str")
             if not isinstance(data[key], DataPoints):
                 raise ValueError("values must be of type DataPoints")
