@@ -7,7 +7,17 @@ class LabeledDataPoints:
     # data = {label1: [p1, p2, p3, ..., pn], label2: [p1, p2, p3, ..., pn], ...}
     # where p1 = [x1, x2, x3, ..., xk]
     # and len(p1) = len(p2) = len(p3) = ... = len(pn)
-    def __init__(self, data: dict):
+    def __init__(self, data, labels=None):
+        if type(data) == dict:
+            self._init_dict(data)
+        elif type(data) == DataPoints or type(data) == list:
+            if labels is None:
+                raise ValueError("labels must be provided")
+            self._init_datapoints(data, labels)
+        else:
+            raise ValueError("data must be a dictionary of DataPoints or a dictionary of lists")
+
+    def _init_dict(self, data):
         if len(data) != 0 and type(data[0]) == DataPoints:
             self.data = data
         elif len(data) != 0 and type(data[0]) == list:
@@ -20,7 +30,7 @@ class LabeledDataPoints:
         
         self._evaluate_labeled_data_points(data)
     
-    def __init__(self, data: DataPoints, labels: list):
+    def _init_datapoints(self, data: DataPoints, labels: list):
         if type(data) == list: # assuming data is a list of merkmale? [x, y]
             # transform ? TODO
             data = [
@@ -49,5 +59,5 @@ class LabeledDataPoints:
             if not(isinstance(key, (int, float, str))):
                 raise ValueError("keys types must be either int, float or str")
             if not isinstance(data[key], DataPoints):
-                raise ValueError("values must be of type DataPoints")
+                data[key] = DataPoints(data[key])
         return True
