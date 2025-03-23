@@ -1,5 +1,5 @@
-from basic_data_structures.data_points import DataPoints
-from basic_data_structures.labeled_data_points import LabeledDataPoints
+from clustering.basic_data_structures.data_points import DataPoints
+from clustering.basic_data_structures.labeled_data_points import LabeledDataPoints
 from random import randint
 
 
@@ -17,6 +17,7 @@ class KMeans:
             iterations += 1
 
         self.clustered_data = assigned_points
+        
         return LabeledDataPoints(assigned_points)
     
     def _initialize_centroids(self, k: int) -> list:

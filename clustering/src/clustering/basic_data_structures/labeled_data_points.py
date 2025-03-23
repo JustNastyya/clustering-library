@@ -1,4 +1,4 @@
-from basic_data_structures.data_points import DataPoints
+from clustering.basic_data_structures.data_points import DataPoints
 
 class LabeledDataPoints:
     # init LabeledDataPoints
@@ -20,23 +20,14 @@ class LabeledDataPoints:
     def _init_dict(self, data):
         if len(data) != 0 and type(data[0]) == DataPoints:
             self.data = data
-        elif len(data) != 0 and type(data[0]) == list:
-            self.data = {
-                key: DataPoints(data[key])
-                for key in data.keys()
-            }
-        else: # TODO add pandas?
-            raise ValueError("data must be a dictionary of DataPoints or a dictionary of lists")
+            raise ValueError("data must be a non-empty dictionary of DataPoints")
         
         self._evaluate_labeled_data_points(data)
     
     def _init_datapoints(self, data: DataPoints, labels: list):
-        if type(data) == list: # assuming data is a list of merkmale? [x, y]
-            # transform ? TODO
-            data = [
-                [data[j][i] for j in range(len(data))]
-                for i in range(len(data[0]))
-            ]
+        if type(data).__name__ == "list": # assuming data is a [x, y] list
+            data = DataPoints(data)
+            data.transformate()
         if len(data) != len(labels):
             raise ValueError("data and labels must have the same length")
         self.data = {

@@ -21,7 +21,7 @@ def test_01():
     # evaluate
     assert prediction == [0]
 
-    plot_data(x, y, classes, new_points[0], new_points[1], prediction[0])
+    # plot_data(x, y, classes, new_points[0], new_points[1], prediction[0])
 
 
 def plot_data(x, y, classes, new_x, new_y, prediction):

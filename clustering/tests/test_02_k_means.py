@@ -1,4 +1,7 @@
-from clustering import KMeans, LabeledDataPoints, DataPoints
+from clustering.basic_data_structures.data_points import DataPoints
+from clustering.basic_data_structures.labeled_data_points import LabeledDataPoints
+from clustering.method_classes.k_means import KMeans
+from clustering.method_classes.k_nn import KNN
 import matplotlib.pyplot as plt
 
 # TODO jypzter notebook

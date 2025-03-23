@@ -1,5 +1,5 @@
-from basic_data_structures.labeled_data_points import LabeledDataPoints
-from basic_data_structures.data_points import DataPoints
+from clustering.basic_data_structures.data_points import DataPoints
+from clustering.basic_data_structures.labeled_data_points import LabeledDataPoints
 
 class KNN:
     def __init__(self, data: LabeledDataPoints):
@@ -44,8 +44,7 @@ class KNN:
             for data_point in self.data[label]:
                 distances.append([label, self._euclidean_distance(x, data_point)]) # TODO andere distanzen?
         distances.sort(key=lambda x: x[1])
-        print(distances)
-
+        
         most_used_labeles = distances[:self.k]
         most_used_labels = [label for label, _ in most_used_labeles]
         return self._get_most_frequent_value(most_used_labels)
