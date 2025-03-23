@@ -1,10 +1,13 @@
 class DataPoints:
-    # init takes a list of lists
-    # where each list represents a data point (float)
-    # data = [p1, p2, p3, ..., pn]
-    # where p1 = [x1, x2, x3, ..., xk]
-    # and len(p1) = len(p2) = len(p3) = ... = len(pn)
     def __init__(self, data: list, reverse=False):
+        """init takes a list of lists
+        where each list represents a data point (float)
+        data = [p1, p2, p3, ..., pn]
+        where p1 = [x1, x2, x3, ..., xk]
+        and len(p1) = len(p2) = len(p3) = ... = len(pn)
+        can also be initialized as a list of variables. to do
+        so use: reverse=True
+        """
         self.data = data
         if reverse:
             self.transformate()
@@ -17,6 +20,7 @@ class DataPoints:
         return self.data[key]
     
     def transformate(self):
+        """perform a matrix transformation on your data"""
         self.data = [
             [self.data[j][i] for j in range(len(self.data))]
             for i in range(len(self.data[0]))
