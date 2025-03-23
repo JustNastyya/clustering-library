@@ -18,10 +18,10 @@ class LabeledDataPoints:
             raise ValueError("data must be a dictionary of DataPoints or a dictionary of lists")
 
     def _init_dict(self, data):
-        if len(data) != 0 and type(data[0]) == DataPoints:
-            self.data = data
+        if len(data) == 0:
             raise ValueError("data must be a non-empty dictionary of DataPoints")
         
+        self.data = data
         self._evaluate_labeled_data_points(data)
     
     def _init_datapoints(self, data: DataPoints, labels: list):

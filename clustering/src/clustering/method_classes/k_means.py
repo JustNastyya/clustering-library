@@ -17,7 +17,7 @@ class KMeans:
             iterations += 1
 
         self.clustered_data = assigned_points
-        
+
         return LabeledDataPoints(assigned_points)
     
     def _initialize_centroids(self, k: int) -> list:
