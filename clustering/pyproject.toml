@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "clustering"
-dynamic = ["version"]
+version = "0.1"
 description = ''
 readme = "README.md"
 requires-python = ">=3.7"
@@ -31,7 +31,6 @@ Documentation = "https://github.com/unknown/clustering#readme"
 Issues = "https://github.com/unknown/clustering/issues"
 Source = "https://github.com/unknown/clustering"
 
-[tool.hatch.version]
 path = "src/clustering/__about__.py"
 
 [tool.hatch.envs.default]
@@ -138,7 +137,7 @@ ban-relative-imports = "all"
 "tests/**/*" = ["PLR2004", "S101", "TID252"]
 
 [tool.coverage.run]
-source_pkgs = ["clustering", "tests"]
+source_pkgs = ["clustering"]
 branch = true
 parallel = true
 omit = [
@@ -155,3 +154,4 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
 ]
+

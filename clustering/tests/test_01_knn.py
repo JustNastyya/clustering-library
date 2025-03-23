@@ -1,7 +1,7 @@
-from sklearn.neighbors import KNeighborsClassifier
-from clustering import KNN, LabeledDataPoints, DataPoints
+from clustering.basic_data_structures.data_points import DataPoints
+from clustering.basic_data_structures.labeled_data_points import LabeledDataPoints
+from clustering.method_classes.k_nn import KNN
 import matplotlib.pyplot as plt
-
 
 def test_01():
     x = [4, 5, 10, 4, 3, 11, 14 , 8, 10, 12]
