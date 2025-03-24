@@ -14,6 +14,8 @@
 
 ```console
 pip install clustering
+
+python -m pip install -e .
 ```
 
 ## Introduction
